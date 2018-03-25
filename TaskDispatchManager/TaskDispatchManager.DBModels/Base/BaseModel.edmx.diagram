@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7eb48c1edc90402b9cf8775c1c4c2953" Name="Diagram1">
+        <EntityTypeShape EntityType="taskdbModel.Express" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="taskdbModel.ExpressCompany" Width="1.75" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="taskdbModel.ExpressHistory" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="taskdbModel.ExpressProcessDetail" Width="2" PointX="2.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="taskdbModel.Message" Width="1.5" PointX="5.375" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="taskdbModel.MessageHistory" Width="1.75" PointX="7" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="taskdbModel.Proxy" Width="1.625" PointX="5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="taskdbModel.ProxyUseHistory" Width="1.5" PointX="8.125" PointY="6.125" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

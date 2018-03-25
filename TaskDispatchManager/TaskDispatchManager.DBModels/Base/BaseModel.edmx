@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="taskdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Express">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="No" Type="nvarchar" MaxLength="100" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="200" />
+          <Property Name="Receiver" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ExpressCompany">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Code" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ExpressHistory">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ExpressGuid" Type="uniqueidentifier" />
+          <Property Name="ExpressNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="ExpressCompanyCode" Type="nvarchar" MaxLength="200" />
+          <Property Name="Receiver" Type="nvarchar" MaxLength="500" />
+          <Property Name="State" Type="tinyint" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ExpressProcessDetail">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GroupNo" Type="int" />
+          <Property Name="ExpressNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="Context" Type="nvarchar" MaxLength="500" />
+          <Property Name="State" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Receiver" Type="nvarchar" MaxLength="50" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="200" />
+          <Property Name="Type" Type="tinyint" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="FromType" Type="nvarchar" MaxLength="200" />
+          <Property Name="FkGUID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="MessageHistory">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MessageGuid" Type="uniqueidentifier" />
+          <Property Name="Receiver" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="tinyint" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="SendOn" Type="datetime" />
+          <Property Name="Staue" Type="tinyint" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+          <Property Name="FromType" Type="nvarchar" MaxLength="200" />
+          <Property Name="FkGUID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Proxy">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="IP" Type="nvarchar" MaxLength="100" />
+          <Property Name="Port" Type="nvarchar" MaxLength="10" />
+          <Property Name="ProxyIp" Type="nvarchar" MaxLength="110" />
+          <Property Name="Position" Type="nvarchar" MaxLength="100" />
+          <Property Name="Anonymity" Type="nvarchar" MaxLength="20" />
+          <Property Name="Type" Type="nvarchar" MaxLength="20" />
+          <Property Name="Speed" Type="varchar" MaxLength="20" />
+          <Property Name="ConnectTime" Type="varchar" MaxLength="20" />
+          <Property Name="VerifyTime" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProxyUseHistory">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProxyGuid" Type="uniqueidentifier" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="taskdbModelStoreContainer">
+          <EntitySet Name="Express" EntityType="Self.Express" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpressCompany" EntityType="Self.ExpressCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpressHistory" EntityType="Self.ExpressHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpressProcessDetail" EntityType="Self.ExpressProcessDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageHistory" EntityType="Self.MessageHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proxy" EntityType="Self.Proxy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProxyUseHistory" EntityType="Self.ProxyUseHistory" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="taskdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Express">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="Guid" Nullable="false" />
+          <Property Name="No" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyCode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Receiver" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ExpressCompany">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ExpressHistory">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="Guid" Nullable="false" />
+          <Property Name="ExpressGuid" Type="Guid" />
+          <Property Name="ExpressNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ExpressCompanyCode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Receiver" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="Byte" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ExpressProcessDetail">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="Guid" Nullable="false" />
+          <Property Name="GroupNo" Type="Int32" />
+          <Property Name="ExpressNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="Context" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="Byte" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="Guid" Nullable="false" />
+          <Property Name="Receiver" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Byte" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="FromType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FkGUID" Type="Guid" />
+        </EntityType>
+        <EntityType Name="MessageHistory">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="Guid" Nullable="false" />
+          <Property Name="MessageGuid" Type="Guid" />
+          <Property Name="Receiver" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Byte" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="SendOn" Type="DateTime" Precision="3" />
+          <Property Name="Staue" Type="Byte" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FromType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FkGUID" Type="Guid" />
+        </EntityType>
+        <EntityType Name="Proxy">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="Guid" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Port" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ProxyIp" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Anonymity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Speed" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ConnectTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="VerifyTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="dbTaskContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Express" EntityType="Self.Express" />
+          <EntitySet Name="ExpressCompany" EntityType="Self.ExpressCompany" />
+          <EntitySet Name="ExpressHistory" EntityType="Self.ExpressHistory" />
+          <EntitySet Name="ExpressProcessDetail" EntityType="Self.ExpressProcessDetail" />
+          <EntitySet Name="Message" EntityType="Self.Message" />
+          <EntitySet Name="MessageHistory" EntityType="Self.MessageHistory" />
+          <EntitySet Name="Proxy" EntityType="Self.Proxy" />
+          <EntitySet Name="ProxyUseHistory" EntityType="taskdbModel.ProxyUseHistory" />
+        </EntityContainer>
+        <EntityType Name="ProxyUseHistory">
+          <Key>
+            <PropertyRef Name="Guid" />
+          </Key>
+          <Property Name="Guid" Type="Guid" Nullable="false" />
+          <Property Name="ProxyGuid" Type="Guid" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="taskdbModelStoreContainer" CdmEntityContainer="dbTaskContext">
+          <EntitySetMapping Name="Express">
+            <EntityTypeMapping TypeName="taskdbModel.Express">
+              <MappingFragment StoreEntitySet="Express">
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpressCompany">
+            <EntityTypeMapping TypeName="taskdbModel.ExpressCompany">
+              <MappingFragment StoreEntitySet="ExpressCompany">
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpressHistory">
+            <EntityTypeMapping TypeName="taskdbModel.ExpressHistory">
+              <MappingFragment StoreEntitySet="ExpressHistory">
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="ExpressGuid" ColumnName="ExpressGuid" />
+                <ScalarProperty Name="ExpressNo" ColumnName="ExpressNo" />
+                <ScalarProperty Name="ExpressCompanyCode" ColumnName="ExpressCompanyCode" />
+                <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpressProcessDetail">
+            <EntityTypeMapping TypeName="taskdbModel.ExpressProcessDetail">
+              <MappingFragment StoreEntitySet="ExpressProcessDetail">
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="GroupNo" ColumnName="GroupNo" />
+                <ScalarProperty Name="ExpressNo" ColumnName="ExpressNo" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Context" ColumnName="Context" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Message">
+            <EntityTypeMapping TypeName="taskdbModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="FromType" ColumnName="FromType" />
+                <ScalarProperty Name="FkGUID" ColumnName="FkGUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageHistory">
+            <EntityTypeMapping TypeName="taskdbModel.MessageHistory">
+              <MappingFragment StoreEntitySet="MessageHistory">
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="MessageGuid" ColumnName="MessageGuid" />
+                <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="SendOn" ColumnName="SendOn" />
+                <ScalarProperty Name="Staue" ColumnName="Staue" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="FromType" ColumnName="FromType" />
+                <ScalarProperty Name="FkGUID" ColumnName="FkGUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proxy">
+            <EntityTypeMapping TypeName="taskdbModel.Proxy">
+              <MappingFragment StoreEntitySet="Proxy">
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="ProxyIp" ColumnName="ProxyIp" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Anonymity" ColumnName="Anonymity" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Speed" ColumnName="Speed" />
+                <ScalarProperty Name="ConnectTime" ColumnName="ConnectTime" />
+                <ScalarProperty Name="VerifyTime" ColumnName="VerifyTime" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProxyUseHistory">
+            <EntityTypeMapping TypeName="taskdbModel.ProxyUseHistory">
+              <MappingFragment StoreEntitySet="ProxyUseHistory">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ProxyGuid" ColumnName="ProxyGuid" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

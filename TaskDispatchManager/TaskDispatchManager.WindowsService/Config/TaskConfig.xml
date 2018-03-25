@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TaskSet>
+  <Task>
+    <!--任务ID-->
+    <TaskID>1</TaskID>
+    <!--任务名称-->
+    <TaskName>爬虫-获取代理IP</TaskName>
+    <!--任务执行参数-->
+    <TaskParam>{"IPUrl":"http://www.xicidaili.com/nn","DefaultProxyIp":"",IsPingIp:true,showDebugLog:true}</TaskParam>
+    <!--运行频率设置 每1个小时运行一次  可以使用http://jason.hahuachou.com/cron/index.htm 进行在线生成-->
+    <CronExpressionString>0 0/1 7-23 * * ?</CronExpressionString>
+    <!--任务所在DLL对应的程序集名称-->
+    <Assembly>TaskDispatchManager.Tasks</Assembly>
+    <!--任务所在类包含命名空间 egTaskDispatchManager.Tasks(命名空间).ProxyJob(类名)-->
+    <Class>TaskDispatchManager.Tasks.ProxyJob</Class>
+    <!--任务是否启动-->
+    <IsExcute>true</IsExcute>
+  </Task>
+  <Task>
+    <TaskID>2</TaskID>
+    <!--动态修改配置文件后该任务会对比修改信息,然后修改现有任务运行信息，无需重启Windows服务-->
+    <TaskName>Job修改任务</TaskName>
+    <TaskParam></TaskParam>
+    <!--运行频率设置 每5分钟运行一次-->
+    <CronExpressionString>0 0/5 * * * ? </CronExpressionString>
+    <Assembly>TaskDispatchManager.Tasks</Assembly>
+    <Class>TaskDispatchManager.Tasks.ConfigJob</Class>
+    <IsExcute>false</IsExcute>
+  </Task>
+</TaskSet>

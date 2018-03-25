@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6E13ED24-9251-40E2-9710-FE7450DB8C89}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TaskDispatchManager.WindowsService</RootNamespace>
+    <AssemblyName>TaskDispatchManager.WindowsService</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Log4Net.Async, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Log4Net.Async.2.0.0.0\lib\net40\Log4Net.Async.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TaskDispatchManagerService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TaskDispatchManagerService.Designer.cs">
+      <DependentUpon>TaskDispatchManagerService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TaskDispatchManager.Common\TaskDispatchManager.Common.csproj">
+      <Project>{a31e65f4-55c0-46f2-9c0a-3d52d48ba3ca}</Project>
+      <Name>TaskDispatchManager.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskDispatchManager.Component\TaskDispatchManager.Component.csproj">
+      <Project>{efcd64e2-aa23-484d-82b1-3295cafd608e}</Project>
+      <Name>TaskDispatchManager.Component</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskDispatchManager.Configuration\TaskDispatchManager.Configuration.csproj">
+      <Project>{86fad836-79f7-4bf4-bf4b-fbd3a4f223cb}</Project>
+      <Name>TaskDispatchManager.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskDispatchManager.DalFactory\TaskDispatchManager.DalFactory.csproj">
+      <Project>{4b86720b-3192-444a-baa2-5f1e39906129}</Project>
+      <Name>TaskDispatchManager.DalFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskDispatchManager.DAL\TaskDispatchManager.DAL.csproj">
+      <Project>{7af91101-081a-4535-9e81-e4839e3cda6e}</Project>
+      <Name>TaskDispatchManager.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskDispatchManager.DBModels\TaskDispatchManager.DBModels.csproj">
+      <Project>{cd22c803-0ce2-4bb8-b348-2909aaf4e2de}</Project>
+      <Name>TaskDispatchManager.DBModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskDispatchManager.IDAL\TaskDispatchManager.IDAL.csproj">
+      <Project>{3b857d5b-43e1-441d-a3e6-ff321e06f0fd}</Project>
+      <Name>TaskDispatchManager.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskDispatchManager.IService\TaskDispatchManager.IService.csproj">
+      <Project>{6bae3b8e-b777-497c-b67a-4f8571c49df4}</Project>
+      <Name>TaskDispatchManager.IService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskDispatchManager.ServiceModel\TaskDispatchManager.ServiceModel.csproj">
+      <Project>{323262b8-a136-4f25-a545-3ce17983922c}</Project>
+      <Name>TaskDispatchManager.ServiceModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskDispatchManager.Service\TaskDispatchManager.Service.csproj">
+      <Project>{3a3835a3-54fa-4824-9d60-606812d3275c}</Project>
+      <Name>TaskDispatchManager.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskDispatchManager.Tasks\TaskDispatchManager.Tasks.csproj">
+      <Project>{fdfdd414-6b63-4bd0-9ecf-415918965d1b}</Project>
+      <Name>TaskDispatchManager.Tasks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaskDispatchManager.ViewModel\TaskDispatchManager.ViewModel.csproj">
+      <Project>{f9ef6b87-34c0-4e2c-b63a-e717af18be57}</Project>
+      <Name>TaskDispatchManager.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\Config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\TaskConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
